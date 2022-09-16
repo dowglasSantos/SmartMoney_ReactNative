@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from 'react';
-import {useFocusEffect} from '@react-navigation/native';
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
 
 import {ContainerDefault} from '../Core/ContainerDefault';
 import {RenderList} from './styles';
@@ -8,6 +8,8 @@ import {EntryListItem} from './EntryListItem';
 import {getEntry} from '../../services/Entry';
 
 export const EntryList = () => {
+  const navigation = useNavigation();
+
   const [data, setData] = useState([]);
 
   useFocusEffect(
@@ -25,7 +27,7 @@ export const EntryList = () => {
     <ContainerDefault
       title="Últimos lançamentos"
       footerTitle="Últimos 7 dias"
-      functionButton={() => {}}
+      functionButton={() => navigation.navigate('Report')}
       buttonTitle="Ver mais">
       <RenderList
         data={data}
