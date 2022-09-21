@@ -3,27 +3,28 @@ import {Alert} from 'react-native';
 
 import {getUUID} from './UUID';
 
-export const saveEntry = async value => {
+export const saveEntry = async (value, entry) => {
   const realm = await getRealm();
 
   try {
     let data = {};
 
-    const {amount} = value;
+    const {id, amount, entryAt} = value;
 
     realm.write(() => {
       data = {
-        id: getUUID(),
-        amount: amount,
-        entryAt: new Date(),
-        isInit: true,
+        id: id || entry.id || getUUID(),
+        amount: amount || entry.amount,
+        entryAt: entryAt || entry.entryAt,
+        isInit: false,
+        category: value.category || entry.category,
       };
 
       realm.create('Entry', data, true);
     });
-    console.log('useEntry :: data', JSON.stringify(data));
+    console.log('saveEntry :: data', JSON.stringify(data));
   } catch (error) {
-    console.error('useEntry :: error', JSON.stringify(error));
+    console.error('saveEntry :: error', JSON.stringify(error));
     Alert.alert('Atenção', 'Erro ao salvar os dados, tente novamente.');
   }
 };

@@ -13,27 +13,6 @@ export const HeaderContainer = styled.View`
   align-items: center;
 `;
 
-export const InputBalance = styled.TextInput`
-  width: 95%;
-  height: 80px;
-  font-size: 28px;
-  padding: 5px 20px;
-  text-align: right;
-  border-radius: 15px;
-  align-items: center;
-  background-color: #34495e;
-`;
-
-export const CategoryButton = styled.TouchableOpacity`
-  width: 95%;
-  height: 80px;
-  text-align: right;
-  border-radius: 15px;
-  align-items: center;
-  margin-top: 15px;
-  background-color: #34495e;
-`;
-
 export const ContainerSecundaryAction = styled.View`
   width: 60%;
   padding: 10px 5px;

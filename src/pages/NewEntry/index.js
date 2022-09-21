@@ -12,7 +12,7 @@ export const NewEntry = ({route}) => {
     ? route.params.entry
     : {
         id: null,
-        amount: '',
+        amount: 0,
         description: null,
         entryAt: new Date(),
         latitude: null,
@@ -20,7 +20,7 @@ export const NewEntry = ({route}) => {
         address: null,
         photo: null,
         isInit: true,
-        category: null,
+        category: {id: null, name: 'Selecionar'},
       };
 
   return (

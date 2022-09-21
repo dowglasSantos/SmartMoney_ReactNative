@@ -7,6 +7,7 @@ export const Title = styled.Text`
 
 export const RenderList = styled.FlatList`
   width: 100%;
-  padding: 5px 0px;
+  margin: 15px 0;
+  padding: 5px 5px;
   /* min-height: 15px; */
 `;

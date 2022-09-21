@@ -1,10 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {saveEntry, deleteEntry} from '../../services/Entry';
 import {
   Container,
   HeaderContainer,
-  InputBalance,
-  CategoryButton,
   ContainerSecundaryAction,
   SecundaryActionButton,
   SecundaryActionIcon,
@@ -15,23 +15,35 @@ import {
   CancelText,
 } from './styles';
 
-import {saveEntry, deleteEntry} from '../../services/Entry';
-import {useNavigation} from '@react-navigation/native';
+import {NewEntryInput} from './NewEntryInput';
+import {NewEntryCategoryPicker} from './NewEntryCategoryPicker';
 
 export const NewEntryForm = ({entry}) => {
   const navigation = useNavigation();
-  const [amount, setAmount] = useState(`${entry.amount}`);
+  const [amount, setAmount] = useState(entry.amount);
+  const [entryAt] = useState(
+    entry.entryAt ? new Date(entry.entryAt) : new Date(),
+  );
+  const [category, setCategory] = useState(entry.category);
+  const [isDebit, setIsDebit] = useState(-1);
 
-  console.log('NewEntryForm :: entry', entry);
+  // const [description, setDescription] = useState(entry.description);
+  // const [latitude, setLatitude] = useState(entry.latitude);
+  // const [longitude, setLongitude] = useState(entry.longitude);
+  // const [address, setAddress] = useState(entry.adress);
+  // const [photo, setPhoto] = useState(entry.photo);
 
   const handleSaveEntry = () => {
-    if (amount !== '' && amount !== null) {
+    if (amount !== '' && amount !== null && amount !== 0) {
       const value = {
         amount: Number.parseFloat(amount),
+        entryAt,
+        category,
       };
 
-      saveEntry(value);
+      saveEntry(value, entry);
       navigation.navigate('Main');
+      console.log(`NewEntryForm :: handleSaveEntry ${value}`);
     } else {
       return false;
     }
@@ -45,13 +57,18 @@ export const NewEntryForm = ({entry}) => {
   return (
     <Container>
       <HeaderContainer>
-        <InputBalance
-          placeholder={'0'}
-          keyboardType={'numeric'}
-          onChangeText={text => setAmount(text)}
+        <NewEntryInput
           value={amount}
+          onChangeValue={setAmount}
+          isDebit={setIsDebit}
         />
-        <CategoryButton />
+
+        <NewEntryCategoryPicker
+          category={category}
+          onChangeCategory={setCategory}
+          isDebit={isDebit}
+        />
+
         <ContainerSecundaryAction>
           <SecundaryActionButton>
             <SecundaryActionIcon source={require('../../assets/can.png')} />
@@ -68,10 +85,12 @@ export const NewEntryForm = ({entry}) => {
           </SecundaryActionButton>
         </ContainerSecundaryAction>
       </HeaderContainer>
+
       <FooterContainer>
         <AddButton onPress={handleSaveEntry}>
           <AddText>Adicionar</AddText>
         </AddButton>
+
         <CancelButton onPress={() => navigation.navigate('Main')}>
           <CancelText>Cancelar</CancelText>
         </CancelButton>

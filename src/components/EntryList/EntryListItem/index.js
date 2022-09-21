@@ -20,7 +20,7 @@ export const EntryListItem = ({entry, isFirstItem, isLastItem}) => {
   const bulletControllerY = isFirstItem ? 25 : 0;
   const bulletControllerHeight = isLastItem ? 25 : 50;
   const showBulletLine = !(isFirstItem && isLastItem);
-  //   const bulletControllerColor = entry.category.color || Colors.white;
+  const bulletControllerColor = entry.category.color || Colors.white;
 
   return (
     <Container
@@ -45,16 +45,16 @@ export const EntryListItem = ({entry, isFirstItem, isLastItem}) => {
           r={8}
           stroke={Colors.background}
           strokeWidth="2"
-          fill={Colors.white}
+          fill={bulletControllerColor}
         />
       </Svg>
 
       <Description>
-        <Title>Budega do seu joão</Title>
+        <Title>{entry.category.name}</Title>
 
         <DescriptionProps>
           <IconProps source={require('../../../assets/time.png')} />
-          <Time>{JSON.stringify(entry.entryAt)}</Time>
+          <Time>{entry.entryAt.toString()}</Time>
         </DescriptionProps>
       </Description>
 
