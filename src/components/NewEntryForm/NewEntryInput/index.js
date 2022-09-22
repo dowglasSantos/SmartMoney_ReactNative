@@ -14,11 +14,11 @@ export const NewEntryInput = ({value, onChangeValue, isDebit}) => {
     if (debit <= 0) {
       setDebit(1);
       setTextController('');
-      isDebit(1);
+      isDebit(false);
     } else {
       setDebit(-1);
       setTextController('-');
-      isDebit(-1);
+      isDebit(true);
     }
 
     onChangeValue(value * -1);

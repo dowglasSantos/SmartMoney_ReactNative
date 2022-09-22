@@ -50,7 +50,7 @@ export const EntryListItem = ({entry, isFirstItem, isLastItem}) => {
       </Svg>
 
       <Description>
-        <Title>{entry.category.name}</Title>
+        <Title>{entry.description}</Title>
 
         <DescriptionProps>
           <IconProps source={require('../../../assets/time.png')} />
