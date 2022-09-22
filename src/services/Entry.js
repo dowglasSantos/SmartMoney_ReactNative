@@ -15,6 +15,7 @@ export const saveEntry = async (value, entry) => {
       data = {
         id: id || entry.id || getUUID(),
         amount: amount || entry.amount,
+        description: value.category.name || entry.category.name,
         entryAt: entryAt || entry.entryAt,
         isInit: false,
         category: value.category || entry.category,
@@ -32,7 +33,7 @@ export const saveEntry = async (value, entry) => {
 export const getEntry = async () => {
   const realm = await getRealm();
 
-  const data = realm.objects('Entry');
+  const data = realm.objects('Entry').sorted('entryAt', true);
 
   return data;
 };

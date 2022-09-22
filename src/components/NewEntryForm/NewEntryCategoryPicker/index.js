@@ -11,11 +11,9 @@ import {
   CloseButton,
   CloseButtonText,
 } from './styles';
+import FooterContainer, {PrimaryAction} from '../../Core/FooterContainer';
 
-import {
-  getDebitCategories,
-  getCreditCategories,
-} from '../../../services/Category';
+import {getDebitCategories, getCreditCategories} from '../../../services/Category';
 
 export const NewEntryCategoryPicker = ({
   category,
@@ -25,7 +23,7 @@ export const NewEntryCategoryPicker = ({
   const [visibleModal, setVisibleModal] = useState(false);
   const [categories, setCategories] = useState([]);
 
-  console.log(`NewEntryCategory :: category :${JSON.stringify(category)}`);
+  //console.log(`NewEntryCategory :: category :${JSON.stringify(category)}`);
   console.log(`NewEntryCategory :: isDebit :${JSON.stringify(isDebit)}`);
 
   useEffect(() => {
@@ -33,7 +31,7 @@ export const NewEntryCategoryPicker = ({
   }, [isDebit]);
 
   const categoriesRequest = async () => {
-    if (isDebit <= 0) {
+    if (isDebit) {
       const data = await getDebitCategories();
       setCategories(data);
 
@@ -73,9 +71,9 @@ export const NewEntryCategoryPicker = ({
             )}
           />
 
-          <CloseButton onPress={() => setVisibleModal(false)}>
-            <CloseButtonText>Fechar</CloseButtonText>
-          </CloseButton>
+          <FooterContainer>
+            <PrimaryAction title={'Fechar'} onPress={() => setVisibleModal(false)} />
+          </FooterContainer>
         </ModalContainer>
       </CategoriesModal>
     </Container>
