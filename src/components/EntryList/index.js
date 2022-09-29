@@ -7,7 +7,7 @@ import {EntryListItem} from './EntryListItem';
 
 import {getEntry} from '../../services/Entry';
 
-export const EntryList = ({days = 7}) => {
+export const EntryList = ({days = 7, category}) => {
   const navigation = useNavigation();
 
   const [data, setData] = useState([]);
@@ -15,12 +15,12 @@ export const EntryList = ({days = 7}) => {
   useFocusEffect(
     useCallback(() => {
       const loadingDataBase = async () => {
-        const releasesList = await getEntry(days);
+        const releasesList = await getEntry(days, category);
         return setData(releasesList);
       };
 
       loadingDataBase();
-    }, [days]),
+    }, [days, category]),
   );
 
   return (

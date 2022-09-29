@@ -31,7 +31,7 @@ export const saveEntry = async (value, entry) => {
   }
 };
 
-export const getEntry = async days => {
+export const getEntry = async (days, category) => {
   let realm = await getRealm();
 
   realm = realm.objects('Entry');
@@ -44,7 +44,15 @@ export const getEntry = async days => {
     realm = realm.filtered('entryAt >= $0', date);
   }
 
+  if (category && category.id) {
+    console.log('getEntries :: category ', JSON.stringify(category));
+
+    realm = realm.filtered('category == $0', category);
+  }
+
   const entries = realm.sorted('entryAt', true);
+
+  // console.log('getEntries :: entries ', JSON.stringify(entries));
 
   return entries;
 };
