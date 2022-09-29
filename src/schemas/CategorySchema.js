@@ -15,9 +15,3 @@ const CategorySchema = {
 };
 
 export default CategorySchema;
-
-// id: getUUID(),
-// nome: 'Alimentação',
-// cor: '#1abc9c',
-// isDebit: true,
-// ordem: 0,

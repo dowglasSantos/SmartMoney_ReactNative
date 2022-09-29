@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {
-  Container, 
-  Title, 
+  Container,
+  Title,
   DaysModal, 
   ContainerModal, 
   DaysList, 
@@ -11,7 +11,7 @@ import {
 
 import FooterContainer, {PrimaryAction} from '../Core/FooterContainer';
 
-export const SelectDaysModal = ({day, selectDay}) => {
+export const FilterDaysModal = ({day, selectDay}) => {
   const [visibleModal, setVisibleModal] = useState(false);
   const relativeDays = [1, 3, 7, 15, 21, 30, 45, 60, 90, 180, 365];
 

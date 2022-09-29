@@ -1,11 +1,18 @@
 import styled from "styled-components/native";
 
 export const Container = styled.TouchableOpacity`
+  width: 45%;
   padding: 5px 0;
   align-items: center;
   justify-content: center;
   border: 1px solid #fff;
   border-radius: 20px;
+`;
+
+export const ContainerText = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Title = styled.Text`
@@ -16,6 +23,8 @@ export const Title = styled.Text`
 export const Icon = styled.Image`
   width: 15px;
   height: 15px;
+  margin-top: 8.5px;
+  margin-left: 5px;
 `;
 
 export const DaysModal = styled.Modal``;
