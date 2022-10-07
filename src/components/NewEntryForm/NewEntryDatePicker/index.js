@@ -4,8 +4,8 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
 export const NewEntryDatePicker = ({entryAt, onChange}) => {
   const [visible, setVisible] = useState(false);
-  
-  const onSetDate = (date) => {
+
+  const onSetDate = date => {
     onChange(date);
     setVisible(true);
   };
@@ -15,13 +15,14 @@ export const NewEntryDatePicker = ({entryAt, onChange}) => {
       <Icon source={require('../../../assets/calendario.png')} />
 
       <DateTimePickerModal
-        mode={'data'} 
+        mode={'data'}
         value={entryAt}
-        isVisible={visible} 
-        onCancel={() => setVisible(false)} 
+        isVisible={visible}
+        onCancel={() => setVisible(false)}
         onConfirm={date => onSetDate(date)}
         cancelTextIOS={'Cancelar'}
-        confirmTextIOS={'Salvar'} />
+        confirmTextIOS={'Salvar'}
+      />
     </Container>
   );
 };

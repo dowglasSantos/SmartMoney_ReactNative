@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import {
   Container,
   Title,
-  DaysModal, 
-  ContainerModal, 
-  DaysList, 
-  DaySelect, 
+  DaysModal,
+  ContainerModal,
+  DaysList,
+  DaySelect,
   DaySelectText,
 } from './styles';
 
@@ -24,27 +24,29 @@ export const FilterDaysModal = ({day, selectDay}) => {
     <Container onPress={() => setVisibleModal(true)}>
       <Title>{`${day} dias`}</Title>
 
-      <DaysModal 
+      <DaysModal
         animationType={'slide'}
         transparent={false}
         visible={visibleModal}
         onRequestClose={() => setVisibleModal(false)}>
         <ContainerModal>
-            <DaysList 
-              data={relativeDays}
-              keyExtractor={item => item.toString()}
-              renderItem={({item}) => (
-                <DaySelect onPress={() => onFilterDays(item)}>
-                  <DaySelectText>{`${item} dias`}</DaySelectText>
-                </DaySelect>
-              )}
+          <DaysList
+            data={relativeDays}
+            keyExtractor={item => item.toString()}
+            renderItem={({item}) => (
+              <DaySelect onPress={() => onFilterDays(item)}>
+                <DaySelectText>{`${item} dias`}</DaySelectText>
+              </DaySelect>
+            )}
+          />
+          <FooterContainer>
+            <PrimaryAction
+              title={'Fechar'}
+              onPress={() => setVisibleModal(false)}
             />
-            <FooterContainer>
-              <PrimaryAction title={'Fechar'} onPress={() => setVisibleModal(false)} />
-            </FooterContainer>
+          </FooterContainer>
         </ContainerModal>
       </DaysModal>
     </Container>
   );
 };
-
