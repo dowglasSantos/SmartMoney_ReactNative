@@ -1,11 +1,10 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
+import {useEntry} from '../../hooks/useEntry';
 import {useNavigation} from '@react-navigation/native';
-import {saveEntry, deleteEntry} from '../../services/Entry';
 import {Container, HeaderContainer, ContainerSecundaryAction} from './styles';
 import FooterContainer, {
-  PrimaryAction, 
-  SecundaryAction
+  PrimaryAction,
+  SecundaryAction,
 } from '../Core/FooterContainer';
 
 import {NewEntryInput} from './NewEntryInput';
@@ -14,6 +13,7 @@ import {NewEntryDatePicker} from './NewEntryDatePicker';
 import {NewEntryDeletePicker} from './NewEntryDeletePicker';
 
 export const NewEntryForm = ({entry}) => {
+  const [, saveEntry, deleteEntry] = useEntry();
   const navigation = useNavigation();
   const [amount, setAmount] = useState(entry.amount);
   const [entryAt, setEntryAt] = useState(
@@ -75,15 +75,19 @@ export const NewEntryForm = ({entry}) => {
 
         <ContainerSecundaryAction>
           <NewEntryDatePicker entryAt={entryAt} onChange={setEntryAt} />
-          {entry.id && 
-          <NewEntryDeletePicker onDelete={onDelete} />
-          }
+          {entry.id && <NewEntryDeletePicker onDelete={onDelete} />}
         </ContainerSecundaryAction>
       </HeaderContainer>
 
       <FooterContainer>
-        <PrimaryAction title={entry.id ? 'Atualizar' : 'Adicionar'} onPress={onSaveEntry} />
-        <SecundaryAction title={'Cancelar'} onPress={() => navigation.goBack()} />
+        <PrimaryAction
+          title={entry.id ? 'Atualizar' : 'Adicionar'}
+          onPress={onSaveEntry}
+        />
+        <SecundaryAction
+          title={'Cancelar'}
+          onPress={() => navigation.goBack()}
+        />
       </FooterContainer>
     </Container>
   );

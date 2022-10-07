@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {
-  Container,  
+  Container,
   Title,
   CategoryModa,
   ContainerModal,
@@ -10,18 +10,11 @@ import {
 } from './styles';
 import FooterContainer, {PrimaryAction} from '../Core/FooterContainer';
 
-import {getAllCategories} from '../../services/Category';
+import {useCategory} from '../../hooks/useCategory';
 
 export const FilterCategoryModal = ({category, setCategory}) => {
-  const [categories, setCategories] = useState([]);
+  const [allCategories] = useCategory();
   const [visibleModal, setVisibleModal] = useState(false);
-  
-  useEffect(() => {
-    (async () => {
-      const data = await getAllCategories();
-      setCategories(data);
-    })();
-  }, []);
 
   const onFilterCategory = item => {
     setCategory(item);
@@ -32,14 +25,14 @@ export const FilterCategoryModal = ({category, setCategory}) => {
     <Container onPress={() => setVisibleModal(true)}>
       <Title>{category.name}</Title>
 
-      <CategoryModa 
+      <CategoryModa
         transparent={false}
         visible={visibleModal}
         animationType={'slide'}
         onRequestClose={() => setVisibleModal(false)}>
         <ContainerModal>
-          <CategoryList 
-            data={categories}
+          <CategoryList
+            data={allCategories}
             keyExtractor={item => item.id}
             renderItem={({item}) => (
               <CategorySelect onPress={() => onFilterCategory(item)}>
@@ -47,10 +40,14 @@ export const FilterCategoryModal = ({category, setCategory}) => {
                   {item.name}
                 </CategorySelectText>
               </CategorySelect>
-            )}/>
+            )}
+          />
 
           <FooterContainer>
-            <PrimaryAction title={'Fechar'} onPress={() => setVisibleModal(false)} />
+            <PrimaryAction
+              title={'Fechar'}
+              onPress={() => setVisibleModal(false)}
+            />
           </FooterContainer>
         </ContainerModal>
       </CategoryModa>

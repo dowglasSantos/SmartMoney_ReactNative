@@ -13,5 +13,5 @@ export const Title = styled.Text`
 export const Balance = styled.Text`
   color: #fff;
   font-size: 28px;
-  padding: 5px 10px;
+  padding: 8px 10px;
 `;

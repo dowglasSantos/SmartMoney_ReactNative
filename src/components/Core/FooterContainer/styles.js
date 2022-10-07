@@ -1,4 +1,4 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 
 export const Container = styled.View`
   width: 100%;
@@ -6,7 +6,7 @@ export const Container = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  // background-color: #F00;
+  /* background-color: #F00; */
 `;
 
 export const PrimaryButton = styled.TouchableOpacity`
@@ -24,6 +24,5 @@ export const SecundaryButton = styled.TouchableOpacity``;
 
 export const SecundaryButtonText = styled.Text`
   font-size: 16px;
-  color: rgb(140,140,140);
+  color: rgb(140, 140, 140);
 `;
-

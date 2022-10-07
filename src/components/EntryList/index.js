@@ -1,27 +1,15 @@
-import React, {useState, useCallback} from 'react';
-import {useNavigation, useFocusEffect} from '@react-navigation/native';
+import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 import {ContainerDefault} from '../Core/ContainerDefault';
 import {RenderList} from './styles';
 import {EntryListItem} from './EntryListItem';
 
-import {getEntry} from '../../services/Entry';
+import {useEntry} from '../../hooks/useEntry';
 
 export const EntryList = ({days = 7, category}) => {
   const navigation = useNavigation();
-
-  const [data, setData] = useState([]);
-
-  useFocusEffect(
-    useCallback(() => {
-      const loadingDataBase = async () => {
-        const releasesList = await getEntry(days, category);
-        return setData(releasesList);
-      };
-
-      loadingDataBase();
-    }, [days, category]),
-  );
+  const [entry] = useEntry(days, category);
 
   return (
     <ContainerDefault
@@ -30,13 +18,13 @@ export const EntryList = ({days = 7, category}) => {
       functionButton={() => navigation.navigate('Report')}
       buttonTitle="Ver mais">
       <RenderList
-        data={data}
+        data={entry}
         keyExtractor={item => item.id}
         renderItem={({item, index}) => (
           <EntryListItem
             entry={item}
             isFirstItem={index === 0}
-            isLastItem={index === data.length - 1}
+            isLastItem={index === entry.length - 1}
           />
         )}
       />
