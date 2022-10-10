@@ -1,6 +1,19 @@
 import React from 'react';
-import {Container} from './styles';
+import {Container, CategoriesList} from './styles';
 
-export const EntrySummaryList = () => {
-  return <Container />;
+import {useEntry} from '../../../hooks/useEntry';
+import {EntrySummaryListItem} from './EntrySummaryListItem';
+
+export const EntrySummaryList = ({days, category}) => {
+  const [entry] = useEntry(days, category);
+
+  return (
+    <Container>
+      <CategoriesList
+        data={entry}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => <EntrySummaryListItem entry={item} />}
+      />
+    </Container>
+  );
 };

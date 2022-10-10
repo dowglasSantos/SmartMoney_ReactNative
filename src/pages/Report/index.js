@@ -30,7 +30,7 @@ export const Report = () => {
           <FilterCategoryModal category={category} setCategory={setCategory} />
           <FilterDaysModal day={day} selectDay={setDay} />
         </ContainerFilters>
-        <EntrySummary />
+        <EntrySummary days={day} category={category} />
         <EntryList category={category} days={day} />
       </MainContainer>
 
