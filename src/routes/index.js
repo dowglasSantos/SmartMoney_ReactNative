@@ -12,7 +12,13 @@ export const Routes = () => {
   return (
     <NavigationContainer>
       <Navigator initialRouteName="Main">
-        <Screen name="Main" component={Main} options={{headerShown: false}} />
+        <Screen
+          name="Main"
+          component={Main}
+          options={{
+            headerShown: false,
+          }}
+        />
         <Screen
           name="NewEntry"
           component={NewEntry}
