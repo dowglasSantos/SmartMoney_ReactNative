@@ -6,8 +6,11 @@ import {ContainerDefault} from '../Core/ContainerDefault';
 import {EntrySummaryChart} from './EntrySummaryChart';
 import {EntrySummaryList} from './EntrySummaryList';
 
-export const EntrySummary = ({days = 7, category}) => {
+import {useGetBalanceSumByCategory} from '../../hooks/useGetBalanceSumByCategory';
+
+export const EntrySummary = ({days = 7}) => {
   const navigation = useNavigation();
+  const [balanceSum] = useGetBalanceSumByCategory(days);
 
   return (
     <ContainerDefault
@@ -16,8 +19,8 @@ export const EntrySummary = ({days = 7, category}) => {
       functionButton={() => navigation.navigate('Report')}
       buttonTitle="Ver mais">
       <ContainerComponents>
-        <EntrySummaryChart />
-        <EntrySummaryList days={days} category={category} />
+        <EntrySummaryChart data={balanceSum} />
+        <EntrySummaryList setBalanceSum={balanceSum} />
       </ContainerComponents>
     </ContainerDefault>
   );

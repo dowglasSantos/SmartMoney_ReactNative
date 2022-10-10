@@ -1,18 +1,18 @@
 import React from 'react';
 import {Container, CategoriesList} from './styles';
-
-import {useEntry} from '../../../hooks/useEntry';
 import {EntrySummaryListItem} from './EntrySummaryListItem';
 
-export const EntrySummaryList = ({days, category}) => {
-  const [entry] = useEntry(days, category);
+export const EntrySummaryList = ({setBalanceSum}) => {
+  console.log(
+    `EntrySummaryList :: setBalanceSum: ${JSON.stringify(setBalanceSum)}`,
+  );
 
   return (
     <Container>
       <CategoriesList
-        data={entry}
-        keyExtractor={item => item.id}
-        renderItem={({item}) => <EntrySummaryListItem entry={item} />}
+        data={setBalanceSum}
+        keyExtractor={item => item.category.id}
+        renderItem={({item}) => <EntrySummaryListItem category={item} />}
       />
     </Container>
   );

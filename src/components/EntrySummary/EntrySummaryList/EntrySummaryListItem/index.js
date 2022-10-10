@@ -4,8 +4,10 @@ import {Container, Description, ContainerDescription, Amount} from './styles';
 import Svg, {Circle} from 'react-native-svg';
 import Colors from '../../../../styles/Colors';
 
-export const EntrySummaryListItem = ({entry}) => {
-  const bulletColors = entry ? entry.category.color : Colors.white;
+export const EntrySummaryListItem = ({category}) => {
+  const bulletColors = category ? category.category.color : Colors.white;
+
+  console.log(`EntrySummaryListItem :: category: ${JSON.stringify(category)}`);
 
   return (
     <Container>
@@ -21,10 +23,10 @@ export const EntrySummaryListItem = ({entry}) => {
           />
         </Svg>
 
-        <Description>{entry.description}</Description>
+        <Description>{category.category.name}</Description>
       </ContainerDescription>
 
-      <Amount>R$ {entry.amount}</Amount>
+      <Amount>R$ {category.amount}</Amount>
     </Container>
   );
 };
