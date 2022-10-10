@@ -6,18 +6,18 @@ import {ContainerDefault} from '../Core/ContainerDefault';
 import {EntrySummaryChart} from './EntrySummaryChart';
 import {EntrySummaryList} from './EntrySummaryList';
 
-export const EntrySummary = () => {
+export const EntrySummary = ({days = 7, category}) => {
   const navigation = useNavigation();
 
   return (
     <ContainerDefault
       title="Categorias"
-      footerTitle="Últimos 7 dias"
+      footerTitle={`Últimos ${days} dias`}
       functionButton={() => navigation.navigate('Report')}
       buttonTitle="Ver mais">
       <ContainerComponents>
         <EntrySummaryChart />
-        <EntrySummaryList />
+        <EntrySummaryList days={days} category={category} />
       </ContainerComponents>
     </ContainerDefault>
   );

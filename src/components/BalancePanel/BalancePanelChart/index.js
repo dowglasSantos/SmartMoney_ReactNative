@@ -1,12 +1,8 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 export const BalancePanelChart = () => {
-  return (
-    <View style={styles.container}>
-      <Text>BalancePanelChart</Text>
-    </View>
-  );
+  return <View style={styles.container} />;
 };
 
 const styles = StyleSheet.create({

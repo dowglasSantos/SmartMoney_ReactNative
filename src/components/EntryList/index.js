@@ -14,7 +14,7 @@ export const EntryList = ({days = 7, category}) => {
   return (
     <ContainerDefault
       title="Últimos lançamentos"
-      footerTitle="Últimos 7 dias"
+      footerTitle={`Últimos ${days} dias`}
       functionButton={() => navigation.navigate('Report')}
       buttonTitle="Ver mais">
       <RenderList

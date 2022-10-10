@@ -1,7 +1,11 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  width: 50%;
+  width: 70%;
   height: 100%;
-  padding: 5px 8px;
+  padding-right: 5px;
+`;
+
+export const CategoriesList = styled.FlatList`
+  flex: 1;
 `;
