@@ -10,6 +10,7 @@ import FooterContainer, {
 import {NewEntryInput} from './NewEntryInput';
 import {NewEntryCategoryPicker} from './NewEntryCategoryPicker';
 import {NewEntryDatePicker} from './NewEntryDatePicker';
+import {NewEntryLocationPicker} from './NewEntryLocationPicker';
 import {NewEntryDeletePicker} from './NewEntryDeletePicker';
 
 export const NewEntryForm = ({entry}) => {
@@ -75,6 +76,7 @@ export const NewEntryForm = ({entry}) => {
 
         <ContainerSecundaryAction>
           <NewEntryDatePicker entryAt={entryAt} onChange={setEntryAt} />
+          <NewEntryLocationPicker />
           {entry.id && <NewEntryDeletePicker onDelete={onDelete} />}
         </ContainerSecundaryAction>
       </HeaderContainer>

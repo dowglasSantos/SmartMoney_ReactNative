@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  max-height: 50%;
+  max-height: 55%;
   min-height: 230px;
   margin-top: 10px;
   margin-left: 10px;
